@@ -1,34 +1,12 @@
-import React from 'react'
+import React from 'react';
+import { hot } from 'react-hot-loader';
+import TodoList from './todos/TodoList';
 import './App.css';
-import hot from 'react-hot-loader'
 
-const App = () =>(
+const App = () => (
     <div className="App">
-      <header className="App-header"/>
-      <h1>Hello, World !!!</h1>
+        <TodoList />
     </div>
 );
-export default hot(App);
 
-/*function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}*/
-
-
+export default hot(module)(App);
