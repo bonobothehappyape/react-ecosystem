@@ -10,6 +10,7 @@ const store = configureStore();
 const persistor = persistStore(store);
 
 ReactDOM.render(
+    /*connect with the redux store*/
     <Provider store={store}>
         <PersistGate
             loading={<div>Loading...</div>}

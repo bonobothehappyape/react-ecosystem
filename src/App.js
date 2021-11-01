@@ -4,6 +4,7 @@ import TodoList from './todos/TodoList';
 import './App.css';
 
 const App = () => (
+    /*component that shows the list*/
     <div className="App">
         <TodoList />
     </div>
