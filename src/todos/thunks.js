@@ -1,20 +1,20 @@
-import {loadTodosFailure, loadTodosInProgress, loadTodosSuccess} from "./actions";
+import {loadTodosInProgress, loadTodosSuccess, loadTodosFailure} from './actions';
 
-export const displayAlert = text => () => {
-    // alert(`You clicked on: ${text}`);
-    alert(text);
-};
-
+/* loading todos */
 export const loadTodos = () => async (dispatch, getState) => {
-
     try {
         dispatch(loadTodosInProgress());
         const response = await fetch('http://localhost:8080/todos');
         const todos = await response.json();
 
         dispatch(loadTodosSuccess(todos));
-    } catch (err) {
+    } catch (e) {
         dispatch(loadTodosFailure());
-        dispatch(displayAlert(err));
+        dispatch(displayAlert(e));
     }
 }
+
+/* */
+export const displayAlert = text => () => {
+    alert(text);
+};
