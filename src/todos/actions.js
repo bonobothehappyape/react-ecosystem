@@ -10,7 +10,6 @@ export const removeTodo = text => ({
     payload: { text },
 });
 
-
 export const MARK_TODO_AS_COMPLETED = 'MARK_TODO_AS_COMPLETED';
 export const markTodoAsCompleted = text => ({
     type: MARK_TODO_AS_COMPLETED,
@@ -25,7 +24,7 @@ export const loadTodosInProgress = () => ({
 export const LOAD_TODOS_SUCCESS = 'LOAD_TODOS_SUCCESS';
 export const loadTodosSuccess = todos => ({
     type: LOAD_TODOS_SUCCESS,
-    payload: { todos }, //success includes the state
+    payload: { todos },
 });
 
 export const LOAD_TODOS_FAILURE = 'LOAD_TODOS_FAILURE';
