@@ -100,33 +100,70 @@ subscribers to update the UI.
 // Handle user inputs by "dispatching" action objects,
 // which should describe "what happened" in the app
 document.getElementById('increment').addEventListener('click', function () {
-  store.dispatch({ type: 'counter/incremented' })
+    store.dispatch({type: 'counter/incremented'})
 })
 
 document.getElementById('decrement').addEventListener('click', function () {
-  store.dispatch({ type: 'counter/decremented' })
+    store.dispatch({type: 'counter/decremented'})
 })
 
 document
-  .getElementById('incrementIfOdd')
-  .addEventListener('click', function () {
-    // We can write logic to decide what to do based on the state
-    if (store.getState().value % 2 !== 0) {
-      store.dispatch({ type: 'counter/incremented' })
-    }
-  })
+    .getElementById('incrementIfOdd')
+    .addEventListener('click', function () {
+        // We can write logic to decide what to do based on the state
+        if (store.getState().value % 2 !== 0) {
+            store.dispatch({type: 'counter/incremented'})
+        }
+    })
 
 document
-  .getElementById('incrementAsync')
-  .addEventListener('click', function () {
-    // We can also write async logic that interacts with the store
-    setTimeout(function () {
-      store.dispatch({ type: 'counter/incremented' })
-    }, 1000)
-  })
+    .getElementById('incrementAsync')
+    .addEventListener('click', function () {
+        // We can also write async logic that interacts with the store
+        setTimeout(function () {
+            store.dispatch({type: 'counter/incremented'})
+        }, 1000)
+    })
 ````
-####Data Flow
+
+#### Data Flow
+
 https://redux.js.org/tutorials/fundamentals/part-1-overview#data-flow
+
+#### Selectors
+
+A "selector function" is any function that accepts the Redux store state (or part of the state) as an argument, and
+returns data that is based on that state. A selector function can have any name you want. However, we recommend
+prefixing selector function names with the word select combined with a description of the value being selected. Typical
+examples of this would look like selectTodoById, selectFilteredTodos, and selectVisibleTodos.
+
+```javascript
+// Arrow function, direct lookup
+const selectEntities = state => state.entities
+
+// Function declaration, mapping over an array to derive values
+function selectItemIds(state) {
+    return state.items.map(item => item.id)
+}
+
+// Function declaration, encapsulating a deep lookup
+function selectSomeSpecificField(state) {
+    return state.some.deeply.nested.field
+}
+
+// Arrow function, deriving values from an array
+const selectItemsWhoseNamesStartWith = (items, namePrefix) =>
+    items.filter(item => item.name.startsWith(namePrefix))
+````
+
+#### Memoization
+
+Memoization is a form of _**caching**_. It involves tracking inputs to a function, and storing the inputs and the
+results for later reference. If a function is called with the same inputs as before, the function can skip doing the
+actual work, and return the same result it generated the last time it received those input values.
+
+The Redux ecosystem has traditionally used a library called [Reselect](https://github.com/reduxjs/reselect) to create
+memoized selector functions.
 
 ### Redux best practices
 
@@ -147,3 +184,5 @@ https://redux.js.org/tutorials/fundamentals/part-1-overview#data-flow
   that component less reusable from the point of view of the rest of our application. ex. if i want two lists of todos,
   one for the completed one for noe, i would need to have parent component connected to the store that passes the state
   to the children components
+
+[]: https://github.com/reduxjs/reselect
