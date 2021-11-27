@@ -9,7 +9,8 @@ node.js ES6 html5 React.js Redux redux-persist scss
 ## usage
 
 ```javascript
-npm run dev
+npm run dev /* run app */
+npm run test /* run tests */
 ```
 
 ## License
